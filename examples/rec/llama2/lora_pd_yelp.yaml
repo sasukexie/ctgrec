@@ -1,0 +1,33 @@
+######## 模型预测 ########
+
+### model
+model_name_or_path: /media/data/model/huggingface/meta-llama/Llama-2-7b-hf
+adapter_name_or_path: saves/llama2/lora/yelp/sft_ft_768
+
+### method
+stage: sft
+do_predict: true
+finetuning_type: lora
+#quantization_bit: 8
+#quantization_method: bitsandbytes
+
+### dataset
+dataset_dir: data/zone
+dataset: yelp_pd
+template: default
+cutoff_len: 1024
+max_samples: 200 # 200,10000
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: saves/llama2/lora/yelp/sft_pd
+overwrite_output_dir: true
+
+### eval
+per_device_eval_batch_size: 8
+predict_with_generate: true
+ddp_timeout: 180000000
+#max_new_tokens: 512
+#top_p: 0.7
+#temperature: 0.95

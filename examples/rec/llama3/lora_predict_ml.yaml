@@ -1,0 +1,29 @@
+### model
+#model_name_or_path: E:/data/model/meta-llama/Llama-3-8B
+model_name_or_path: /media/data/model/huggingface/meta-llama/Llama-3-8B-Instruct
+adapter_name_or_path: saves/llama-3-8b/lora/ml/sft_512
+
+### method
+stage: sft
+do_predict: true
+finetuning_type: lora
+
+### dataset
+dataset_dir: data/rec
+eval_dataset: ml-100k_pd
+template: llama3
+cutoff_len: 1024
+max_samples: 200
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: saves/llama-3-8b/lora/ml/sft_pd_512
+overwrite_output_dir: true
+
+### eval
+per_device_eval_batch_size: 8
+predict_with_generate: true
+ddp_timeout: 180000000
+
+nohup llamafactory-cli train examples/rec/llama3/lora_predict_ml.yaml > log/llama3/ml/pd_`date +"%Y%m%d%H%M%S"`.log 2>&1 &

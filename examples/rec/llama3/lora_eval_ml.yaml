@@ -1,0 +1,20 @@
+### model
+#model_name_or_path: E:/data/model/meta-llama/Llama-3-8B
+model_name_or_path: /media/data/model/huggingface/meta-llama/Llama-3-8B
+adapter_name_or_path: saves/Llama-3-8B/lora/sft/ml
+
+### method
+finetuning_type: lora
+
+### dataset
+task: mmlu
+split: test
+template: fewshot
+lang: en
+n_shot: 5
+
+### output
+save_dir: saves/llama-3-8b/lora/eval/ml
+
+### eval
+batch_size: 4
